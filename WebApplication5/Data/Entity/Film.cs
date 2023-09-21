@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Mvc.Razor;
+using System.ComponentModel.DataAnnotations.Schema;
 using WebApplication5.Enum;
 namespace WebApplication5.Data.Entity
 {
@@ -7,18 +8,18 @@ namespace WebApplication5.Data.Entity
         public int Id { get; set; }     
         public string Name { get; set; }
         public DateTime DOC { get;set; }    
-        public int AllowAge { get; set; }  
+        public string AllowAge { get; set; }  
         public string Description { get; set; }     
 
-        [ForeignKey("Countries")]
-        public int CountryId { get; set; }      
-        public Country Countries { get; set; }      
+         public ICollection<Country> Country { get;set;}
+             
         public GenreEnum Genre { get; set; }
         [ForeignKey("Directors")]   
         
         public  int DirectorId   { get; set; }      
-        public Director Directors { get; set; }     
-
+        public Director Directors { get; set; }  
+        public LenguageEnum Lenguage { get; set; }      
+        public QualityEnum Quality { get; set; }    
 
     }
 }

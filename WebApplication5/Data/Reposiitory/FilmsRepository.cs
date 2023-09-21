@@ -1,5 +1,6 @@
 ﻿using WebApplication5.Data.Entity;
 using WebApplication5.Data.Reposiitory.Interfaces;
+using WebApplication5.ViewModels.Films;
 
 namespace WebApplication5.Data.Reposiitory
 {
@@ -14,6 +15,11 @@ namespace WebApplication5.Data.Reposiitory
         {
             _context.Add(film);
             _context.SaveChanges();
+        }
+
+        public void Add(FilmsAddEdit model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Delete(Film film)

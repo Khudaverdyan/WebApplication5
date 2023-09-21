@@ -16,10 +16,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Countries\" />
-    <Folder Include="ViewModels\Directors\" />
-    <Folder Include="ViewModels\Films\" />
-  </ItemGroup>
-
 </Project>
