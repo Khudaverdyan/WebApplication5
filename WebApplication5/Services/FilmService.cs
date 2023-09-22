@@ -15,18 +15,17 @@ namespace WebApplication5.Services
     
         public void Add(FilmsAddEdit model)
         {
-            Film film = new Film()
-            {
-                Name = model.Name,
-                DOC = model.DOC,
-                AllowAge = model.AllowAge,
-                Description = model.Description,
-                Genre = model.Genre,
-                Lenguage = model.Lenguage,
-                Country = model.CountryId,
-                DirectorId = model.DirectorId,  
-                Quality = model.Quality,    
-            };
+            Film film = new Film();
+            film.Id = model.Id;
+            film.Name = model.Name;
+            film.Description = model.Description;
+            film.DOC = model.DOC;   
+            film.Quality = model.Quality;
+            film.AllowAge = model.AllowAge; 
+            film.DirectorId = model.DirectorId;
+            var list = GetCountryId();
+            list = model.CountryId;
+            
             _filmsRepository.Add(film);
             _filmsRepository.SaveChanges();
         }
@@ -34,15 +33,18 @@ namespace WebApplication5.Services
         public FilmsAddEdit GetById(int id)
         {
             var entityFilm  = _filmsRepository.GetById(id);
-            return new FilmsAddEdit()
-            { 
-                Id = entityFilm.Id,
-                Name = entityFilm.Name,
-                Description =  entityFilm.Description,
-                DOC = entityFilm.DOC,
-                AllowAge = entityFilm.AllowAge,
-                CountryId = entityFilm.Country,
-            };  
+            var query = new FilmsAddEdit();
+            query.Id = entityFilm.Id;
+            query.Name = entityFilm.Name;
+            query.Description = entityFilm.Description;
+            query.DOC = entityFilm.DOC;
+            query.Quality = entityFilm.Quality;
+            query.AllowAge = entityFilm.AllowAge;
+            query.DirectorId = entityFilm.DirectorId;
+            var list = GetCountryId();
+            list = query.CountryId;
+
+
         }
 
         
@@ -60,6 +62,11 @@ namespace WebApplication5.Services
         public void Update(FilmsAddEdit model)
         {
             throw new NotImplementedException();
+        }
+        private List<int> GetCountryId()
+        {
+            Film film = new Film();
+             return film.Countries.Select(p => p.Id).ToList();
         }
     }
 
