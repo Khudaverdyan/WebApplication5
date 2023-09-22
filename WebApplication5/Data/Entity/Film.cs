@@ -11,7 +11,7 @@ namespace WebApplication5.Data.Entity
         public string AllowAge { get; set; }  
         public string Description { get; set; }     
 
-         public ICollection<Country> Country { get;set;}
+         public ICollection<Country> Countries { get;set;}
              
         public GenreEnum Genre { get; set; }
         [ForeignKey("Directors")]   
