@@ -1,4 +1,4 @@
-﻿using WebApplication5.Enum;                                                                                           
+﻿using WebApplication5.Enum;                                                                                                                       sing WebApplication5.Enum;
 
 namespace WebApplication5.ViewModels.Films
 {
@@ -9,7 +9,7 @@ namespace WebApplication5.ViewModels.Films
         public string Description { get; set; }
         public DateTime DOC { get; set; }   
         public string AllowAge { get; set; }  
-        public List<int> CountryId { get; set; } 
+        public int CountryId { get;set; }
 
         public int DirectorId { get; set; }
         public LenguageEnum Lenguage { get; set; }
