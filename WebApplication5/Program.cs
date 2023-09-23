@@ -1,5 +1,9 @@
 using WebApplication5.Data;
 using Microsoft.EntityFrameworkCore;
+using WebApplication5.Data.Reposiitory.Interfaces;
+using WebApplication5.Data;
+using WebApplication5.Data.Reposiitory;
+
 namespace WebApplication5
 {
     public class Program
@@ -11,7 +15,9 @@ namespace WebApplication5
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<MyContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("MoveDBvM")));
-              
+            builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+            builder.Services.AddScoped<IDirectorRepository, DirectorRepository>();
+            builder.Services.AddScoped<IFilmsRepository,FilmsRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,7 +37,7 @@ namespace WebApplication5
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Home}/{id?}");
 
             app.Run();
         }

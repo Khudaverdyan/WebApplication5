@@ -44,7 +44,7 @@ namespace WebApplication5.Services
             query.Quality = entityFilm.Quality;
             query.AllowAge = entityFilm.AllowAge;
             query.DirectorId = entityFilm.DirectorId;
-            query.CountryId = GetCountryId();          
+                   
             query.Lenguage = entityFilm.Lenguage;
             query.Genre = entityFilm.Genre;
             return query;
@@ -62,25 +62,25 @@ namespace WebApplication5.Services
         public void Update(FilmsAddEdit model)
         {
             var entityFilm = _filmsRepository.GetById(model.Id);
-            var query = new FilmsAddEdit();
-            query.Id = entityFilm.Id;
-            query.Name = entityFilm.Name;
-            query.Description = entityFilm.Description;
-            query.DOC = entityFilm.DOC;
-            query.Quality = entityFilm.Quality;
-            query.AllowAge = entityFilm.AllowAge;
-            query.DirectorId = entityFilm.DirectorId;
-            var listId = GetCountryId();
-            listId = query.CountryId;
-            query.Lenguage = entityFilm.Lenguage;
-            query.Genre = entityFilm.Genre;
+           
+            model.Id = entityFilm.Id;
+            model.Name = entityFilm.Name;
+            model.Description = entityFilm.Description;
+            model.DOC = entityFilm.DOC;
+            model.Quality = entityFilm.Quality;
+            model.AllowAge = entityFilm.AllowAge;
+            model.DirectorId = entityFilm.DirectorId;
+            //var listId = GetCountryId();
+            model.CountryId = listId ;
+            model.Lenguage = entityFilm.Lenguage;
+            model.Genre = entityFilm.Genre;
             _filmsRepository.SaveChanges();
         }
-        private List<int> GetCountryId()
-        {
-            Film film = new Film();
-             return film.Countries.Select(p => p.Id).ToList();
-        }
+        //private List<int> GetCountryId()
+        //{
+        //    Film film = new Film();
+        //     return film.Countries.Select(p => p.Id).ToList();
+        //}
     }
 
 }

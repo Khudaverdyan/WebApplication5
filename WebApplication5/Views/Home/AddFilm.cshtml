@@ -1,0 +1,96 @@
+﻿@using WebApplication5.ViewModels.Films;
+@using WebApplication5.Enum;
+@model FilmsAddEdit
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>AddFilm</title>
+</head>
+<body>
+    <h1 style="text-align: center;"> Add Films</h1>
+    <form style="text-align: center;">
+        <div>
+            <label>
+                Film Name
+                <input asp-for="Name"/>
+            </label>       
+         </div>
+
+        <div>
+            <label>
+                Film Create Date
+                <input type="datetime-local"  asp-for="DOC" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Film Allow Age
+                <input asp-for="AllowAge"/>
+            </label>
+        </div>
+
+        
+        <div>
+            <label>Select genre
+                <select asp-for="Genre" asp-items="Html.GetEnumSelectList<GenreEnum>()">
+                    <option>Select Genre</option>
+                </select>
+               
+            </label>
+        </div>
+
+
+        <div>
+            <label>
+                Film  Language
+                <select asp-for="Lenguage" asp-items="Html.GetEnumSelectList<LenguageEnum>()">
+                   
+                    <option>Select Genre</option>
+                </select>
+
+            </label>
+        </div>
+
+
+        <div>
+            <label>
+                Film  Quality
+                <select asp-for="Quality" asp-items="Html.GetEnumSelectList<QualityEnum>()">
+                    <option>Select Quality</option>
+                </select>
+            </label>
+        </div>
+        
+        <div>
+            <label>
+                  Description
+              <textarea asp-for="Description">  </textarea>
+            </label>
+        </div>
+        <div>
+            <select asp-for="CountryId" >
+                @foreach(var item in Model.CountryId )
+                {
+                    <option> @item.</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <label>
+               Submit
+                <input type="submit" value="Save" />
+            </label>
+        </div>
+    </form>
+
+</body>
+</html>
