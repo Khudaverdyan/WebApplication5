@@ -5,9 +5,9 @@ namespace WebApplication5.Services.Interfaces
     public interface IFilmService
     {
         void Add(FilmsAddEdit model);
-        List<FilmsAddEditDropDown> GetListFromDown();
+        void Delete(int Id); 
         FilmsAddEdit GetById(int id);
-        void Update(FilmsAddEdit model);
-        void SaveChanges();
+        void Update(FilmsAddEdit film);
+    
     }
 }
