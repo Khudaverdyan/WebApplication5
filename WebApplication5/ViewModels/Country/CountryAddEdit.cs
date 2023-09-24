@@ -1,9 +1,11 @@
-﻿namespace WebApplication5.ViewModels.Country
+﻿using WebApplication5.Data.Entity;
+
+namespace WebApplication5.ViewModels.Country
 {
     public class CountryAddEdit
     {
         public int Id { get; set; } 
         public string Name { get; set; }
-        public List<int> CountriesFilmId { get; set; }
+        public List<CountryAddEdit> CountriesFilm { get; set; }
     }
 }

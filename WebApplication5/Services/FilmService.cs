@@ -24,8 +24,9 @@ namespace WebApplication5.Services
             film.Quality = model.Quality;
             film.AllowAge = model.AllowAge;
             film.DirectorId = model.DirectorId;
-            var listid = GetCountryId(); 
-            listid = model.CountryId;
+            var list = GetCountry();
+            
+           
             film.Lenguage = model.Lenguage;
             film.Genre = model.Genre;
 
@@ -44,7 +45,8 @@ namespace WebApplication5.Services
             query.Quality = entityFilm.Quality;
             query.AllowAge = entityFilm.AllowAge;
             query.DirectorId = entityFilm.DirectorId;
-                   
+            var countryList =  GetCountry();
+            query.Countries = countryList;
             query.Lenguage = entityFilm.Lenguage;
             query.Genre = entityFilm.Genre;
             return query;
@@ -70,17 +72,20 @@ namespace WebApplication5.Services
             model.Quality = entityFilm.Quality;
             model.AllowAge = entityFilm.AllowAge;
             model.DirectorId = entityFilm.DirectorId;
-            //var listId = GetCountryId();
-            model.CountryId = listId ;
+
             model.Lenguage = entityFilm.Lenguage;
             model.Genre = entityFilm.Genre;
             _filmsRepository.SaveChanges();
         }
-        //private List<int> GetCountryId()
-        //{
-        //    Film film = new Film();
-        //     return film.Countries.Select(p => p.Id).ToList();
-        //}
+        private List<Country> GetCountry()
+        {
+            Film film = new Film();
+            return film.Countries.Select(p=> new Country()
+            {
+                Id = p.Id,
+                Name = p.Name,
+            }).ToList();
+        }
     }
 
 }
