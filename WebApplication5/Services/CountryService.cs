@@ -17,8 +17,7 @@ namespace WebApplication5.Services
             Country  country = new Country();
             country.Id = model.Id;  
             country.Name = model.Name;
-            var list = GetFilmsId();
-            list = model.CountriesFilmId;
+            counrty.Country = model.CountriesFilm;
             _countryRepository.Add(country);
             _countryRepository.SaveChanges();
 
@@ -29,8 +28,7 @@ namespace WebApplication5.Services
             Country entityEntity = _countryRepository.GetById(id);
             CountryAddEdit query = new CountryAddEdit(); 
             query.Id = entityEntity.Id;
-            query.Name = entityEntity.Name;
-            query.CountriesFilmId = GetFilmsId();
+           
             return query;
         }
 
@@ -51,14 +49,17 @@ namespace WebApplication5.Services
             var entityCountry = _countryRepository.GetById(model.Id);
             entityCountry.Id = model.Id;
             entityCountry.Name = model.Name;
-            var list = GetFilmsId();
-            list = model.CountriesFilmId;
+            
 
         }
-        private List<int> GetFilmsId()
+        private List<CountryAddEditDropDown> GetFilmsCountry( )
         {
             Country country = new Country();
-            return country.CountriesFilms.Select(p => p.Id).ToList();          
+            return country.CountriesFilms.Select(c => new Country
+            {
+                Id = c.Id,  
+                Name = c.Name,  
+            }).ToList();          
         }
 
     }

@@ -3,7 +3,7 @@ using WebApplication5.Data.Reposiitory.Interfaces;
 using WebApplication5.Services.Interfaces;
 using WebApplication5.ViewModels.Films;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
+using WebApplication5.ViewModels.Country;
 namespace WebApplication5.Services
 {
     public class FilmService : IFilmService
@@ -77,14 +77,16 @@ namespace WebApplication5.Services
             model.Genre = entityFilm.Genre;
             _filmsRepository.SaveChanges();
         }
-        private List<Country> GetCountry()
+        private List<CountryAddEditDropDown> GetCountry()
         {
             Film film = new Film();
-            return film.Countries.Select(p=> new Country()
-            {
+              return  film.Countries.Select(p => new CountryAddEditDropDown
+              {
                 Id = p.Id,
                 Name = p.Name,
-            }).ToList();
+              }).ToList();
+
+
         }
     }
 
