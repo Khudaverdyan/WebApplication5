@@ -6,6 +6,6 @@ namespace WebApplication5.ViewModels.Country
     {
         public int Id { get; set; } 
         public string Name { get; set; }
-        public List<CountryAddEditDropDown> CountriesFilm { get; set; }
+      
     }
 }

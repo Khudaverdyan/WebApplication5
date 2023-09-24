@@ -25,11 +25,9 @@ namespace WebApplication5.Services
             film.AllowAge = model.AllowAge;
             film.DirectorId = model.DirectorId;
             var list = GetCountry();
-            
-           
+            list = GetCountry();            
             film.Lenguage = model.Lenguage;
             film.Genre = model.Genre;
-
             _filmsRepository.Add(film);
             _filmsRepository.SaveChanges();
         }
@@ -77,16 +75,10 @@ namespace WebApplication5.Services
             model.Genre = entityFilm.Genre;
             _filmsRepository.SaveChanges();
         }
-        private List<CountryAddEditDropDown> GetCountry()
+        private List<int> GetCountry()
         {
-            Film film = new Film();
-              return  film.Countries.Select(p => new CountryAddEditDropDown
-              {
-                Id = p.Id,
-                Name = p.Name,
-              }).ToList();
-
-
+          Film film = new Film();   
+            return film.Countries.Select(c =>c.Id).ToList();    
         }
     }
 

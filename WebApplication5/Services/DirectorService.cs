@@ -23,7 +23,6 @@ namespace WebApplication5.Services
             list = model.DirectorsFilmsId;
             _directorRepository.Add(director);
             _directorRepository.SaveChanges();
-
         }
 
         public DirectorAddEdit GetById(int id)

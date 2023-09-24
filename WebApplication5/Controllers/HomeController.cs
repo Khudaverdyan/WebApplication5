@@ -6,20 +6,10 @@ namespace WebApplication5.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
-        {
-
-         }
+       
         public IActionResult Index()
         {
             return View();
-        }
-        
-
-        public IActionResult AddFilm(FilmsAddEdit model)
-        {
-            return View(model);
-        }
-
+        }       
     }
 }
