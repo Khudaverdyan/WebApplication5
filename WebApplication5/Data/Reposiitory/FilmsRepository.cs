@@ -17,10 +17,6 @@ namespace WebApplication5.Data.Reposiitory
             _context.SaveChanges();
         }
 
-        public void Add(FilmsAddEdit model)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Delete(Film film)
         {

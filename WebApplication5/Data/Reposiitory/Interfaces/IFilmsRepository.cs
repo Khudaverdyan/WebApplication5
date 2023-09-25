@@ -10,6 +10,6 @@ namespace WebApplication5.Data.Reposiitory.Interfaces
         List<Film> GetAll();
         void Delete(Film film);
         void SaveChanges();
-        void Add(FilmsAddEdit model);
+       
     }
 }

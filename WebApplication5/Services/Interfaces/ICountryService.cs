@@ -6,7 +6,7 @@ namespace WebApplication5.Services.Interfaces
     public interface ICountryService
     {
         void Add(CountryAddEdit model);
-        List<CountryAddEditDropDown> GetDropDownList();
+
         CountryAddEdit GetById(int id);
         void Update(CountryAddEdit model);
         

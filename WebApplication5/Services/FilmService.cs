@@ -2,7 +2,8 @@
 using WebApplication5.Data.Reposiitory.Interfaces;
 using WebApplication5.Services.Interfaces;
 using WebApplication5.ViewModels.Films;
-
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using WebApplication5.ViewModels.Country;
 namespace WebApplication5.Services
 {
     public class FilmService : IFilmService
@@ -21,11 +22,12 @@ namespace WebApplication5.Services
             film.Description = model.Description;
             film.DOC = model.DOC;   
             film.Quality = model.Quality;
-            film.AllowAge = model.AllowAge; 
+            film.AllowAge = model.AllowAge;
             film.DirectorId = model.DirectorId;
-            var list = GetCountryId();
-            list = model.CountryId;
-            
+            var list = GetCountry();
+            list = GetCountry();            
+            film.Lenguage = model.Lenguage;
+            film.Genre = model.Genre;
             _filmsRepository.Add(film);
             _filmsRepository.SaveChanges();
         }
@@ -41,32 +43,42 @@ namespace WebApplication5.Services
             query.Quality = entityFilm.Quality;
             query.AllowAge = entityFilm.AllowAge;
             query.DirectorId = entityFilm.DirectorId;
-            var list = GetCountryId();
-            list = query.CountryId;
-
+            var countryList =  GetCountry();
+            query.Countries = countryList;
+            query.Lenguage = entityFilm.Lenguage;
+            query.Genre = entityFilm.Genre;
+            return query;
 
         }
 
-        
-
-        public List<FilmsAddEditDropDown> GetListFromDown()
+        public void Delete(int Id)
         {
-            throw new NotImplementedException();
-        }
+            var entity =  _filmsRepository.GetById(Id);
+            _filmsRepository.Delete(entity);
+            _filmsRepository.SaveChanges();
 
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(FilmsAddEdit model)
         {
-            throw new NotImplementedException();
+            var entityFilm = _filmsRepository.GetById(model.Id);
+           
+            model.Id = entityFilm.Id;
+            model.Name = entityFilm.Name;
+            model.Description = entityFilm.Description;
+            model.DOC = entityFilm.DOC;
+            model.Quality = entityFilm.Quality;
+            model.AllowAge = entityFilm.AllowAge;
+            model.DirectorId = entityFilm.DirectorId;
+
+            model.Lenguage = entityFilm.Lenguage;
+            model.Genre = entityFilm.Genre;
+            _filmsRepository.SaveChanges();
         }
-        private List<int> GetCountryId()
+        private List<int> GetCountry()
         {
-            Film film = new Film();
-             return film.Countries.Select(p => p.Id).ToList();
+          Film film = new Film();   
+            return film.Countries.Select(c =>c.Id).ToList();    
         }
     }
 
